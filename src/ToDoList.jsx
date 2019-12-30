@@ -12,6 +12,7 @@ class ToDoList extends React.Component {
         //Functions below are not arrow functions so need to bind 'this'
         this.create = this.create.bind(this);
         this.remove = this.remove.bind(this);
+        this.update = this.update.bind(this);
     }
 
     create(newTodo){
@@ -26,6 +27,17 @@ class ToDoList extends React.Component {
         });
     }
 
+    update(id, updatedTask){
+        const updatedToDos = this.state.todos.map(todo => {
+            if(todo.id === id){
+                return {...todo, task: updatedTask}
+            }
+            return todo;
+        });
+        //Set State with the array of updated todos
+        this.setState({todos: updatedToDos});
+    }
+
     render(){
 
         const todos = this.state.todos.map(todo => {
@@ -34,6 +46,7 @@ class ToDoList extends React.Component {
                 id={todo.id}
                 task={todo.task} 
                 removeToDo={this.remove}
+                updateToDo={this.update}
                 />;
         })
 
