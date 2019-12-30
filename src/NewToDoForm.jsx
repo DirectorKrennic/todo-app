@@ -17,12 +17,12 @@ class NewToDoForm extends React.Component {
     handleChange(event){
         this.setState({
             [event.target.name]: event.target.value
-        })
+        });
     }
 
     handleSubmit(event){
         event.preventDefault();
-        this.props.createToDo({...this.state, id: uuid()});
+        this.props.createToDo({...this.state, id: uuid(), completed: false});
         this.setState({ task: ''}); //ensuring the text field is reset to an empty string on form submission 
     }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import './ToDo.css';
 
 class ToDo extends React.Component {
 
@@ -12,6 +13,7 @@ class ToDo extends React.Component {
         this.toggleForm = this.toggleForm.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
     }
 
     handleRemove(){
@@ -36,6 +38,10 @@ class ToDo extends React.Component {
         });
     } 
 
+    handleToggle(event){
+        this.props.toggleToDo(this.props.id);
+    }
+
     render(){
         let result;
         if(this.state.isEditing){
@@ -57,7 +63,10 @@ class ToDo extends React.Component {
                 <div>
                     <button onClick={this.toggleForm}>Edit</button>
                     <button onClick={this.handleRemove}>Delete</button>
-                    <li>{this.props.task}</li>
+                    <li 
+                        className={this.props.completed ? 'completed': ''}
+                        onClick={this.handleToggle}
+                    >{this.props.task}</li>
                 </div>
             );
         }
