@@ -46,7 +46,7 @@ class ToDo extends React.Component {
         let result;
         if(this.state.isEditing){
             result = (
-                <div>
+                <div className='ToDo'>
                     <form onSubmit={this.handleUpdate}>
                         <input 
                             type='text' 
@@ -60,7 +60,7 @@ class ToDo extends React.Component {
             );
         }else{
             result = (
-                <div>
+                <div className='ToDo'>
                     <button onClick={this.toggleForm}>Edit</button>
                     <button onClick={this.handleRemove}>Delete</button>
                     <li 
