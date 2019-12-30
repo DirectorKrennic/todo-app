@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid/v4';
 
 class NewToDoForm extends React.Component {
 
@@ -21,7 +22,7 @@ class NewToDoForm extends React.Component {
 
     handleSubmit(event){
         event.preventDefault();
-        this.props.createToDo(this.state);
+        this.props.createToDo({...this.state, id: uuid()});
         this.setState({ task: ''}); //ensuring the text field is reset to an empty string on form submission 
     }
 

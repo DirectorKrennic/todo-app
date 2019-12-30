@@ -7,25 +7,34 @@ class ToDoList extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            todos: [
-                {task: 'Get better at React'},
-                {task: 'Make dinner'}
-            ]
+            todos: []
         };
-        //Create function below is not an arrow function so need to bind 'this'
+        //Functions below are not arrow functions so need to bind 'this'
         this.create = this.create.bind(this);
+        this.remove = this.remove.bind(this);
     }
 
     create(newTodo){
         this.setState({
             todos: [...this.state.todos, newTodo]
-        })
+        });
+    }
+
+    remove(id){
+        this.setState({
+            todos: this.state.todos.filter(td => td.id !== id) 
+        });
     }
 
     render(){
 
         const todos = this.state.todos.map(todo => {
-            return <ToDo task={todo.task}/>;
+            return <ToDo 
+                key={todo.id} 
+                id={todo.id}
+                task={todo.task} 
+                removeToDo={this.remove}
+                />;
         })
 
         return(
